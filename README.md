@@ -1,4 +1,4 @@
-# Couse Kotlin Udemy
+# Course Kotlin Udemy
 
 Udemy course project in Kotlin (Pt-BR)
 
