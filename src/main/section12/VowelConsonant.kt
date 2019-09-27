@@ -25,3 +25,7 @@ fun countConsonants(phrase: String): Int {
     println("Consonants: $consonants")
     return consonants
 }
+//Section 16
+fun countVowelsFilter(string: String) : Int{
+    return string.filter { it.toLowerCase() in "aeiou" }.length
+}
