@@ -4,6 +4,7 @@ import section17schedule.business.ContactBusiness;
 import section17schedule.model.ContactModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class MainForm extends JFrame {
     private JButton buttonNewContact;
     private JButton buttonRemove;
     private JTable tableContacts;
+    private JLabel labelContactCount;
 
     private ContactBusiness contactBusiness;
 
@@ -36,7 +38,23 @@ public class MainForm extends JFrame {
     }
 
     private void loadContacts() {
-        List<ContactModel> listContact = contactBusiness.getList();
+        List<ContactModel> contactList = contactBusiness.getList();
+
+        String[] columnNames = {"Name, Telephone"};
+        DefaultTableModel model = new DefaultTableModel(new Object[0][0], columnNames);
+
+        for (ContactModel c : contactList) {
+            Object[] o = new Object[2];
+            o[0] = c.getName();
+            o[1] = c.getPhone();
+
+            model.addRow(o);
+        }
+
+        tableContacts.clearSelection();
+        tableContacts.setModel(model);
+
+        labelContactCount.setText(contactBusiness.getCount());
     }
 
     private void setListeners() {

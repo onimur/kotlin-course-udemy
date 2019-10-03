@@ -5,6 +5,7 @@ import section17schedule.repository.ContactRepository
 import java.lang.Exception
 
 class ContactBusiness {
+
     fun save(name: String, phone: String) {
         validate(name, phone)
         val contact = ContactModel(name, phone)
@@ -19,6 +20,15 @@ class ContactBusiness {
 
     fun getList(): List<ContactModel> {
         return ContactRepository.getList()
+    }
+
+    fun getCount(): String {
+        val list = getList()
+        return when {
+            list.isEmpty() -> "0 contact"
+            list.size == 1 -> "1 contact"
+            else -> "${list.size} contacts"
+        }
     }
 
     private fun validate(name: String, phone: String, removal: Boolean = false) {
