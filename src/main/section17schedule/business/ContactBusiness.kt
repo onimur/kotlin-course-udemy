@@ -1,19 +1,27 @@
 package section17schedule.business
+
+import section17schedule.model.ContactModel
+import section17schedule.repository.ContactRepository
 import java.lang.Exception
 
-class ContactBusiness  {
-    fun save(name:String, phone:String){
+class ContactBusiness {
+    fun save(name: String, phone: String) {
         validate(name, phone)
+        val contact = ContactModel(name, phone)
+        ContactRepository.save(contact)
     }
 
-    fun delete (name:String, phone:String){
+    fun delete(name: String, phone: String) {
         validate(name, phone, true)
+        val contact = ContactModel(name, phone)
+        ContactRepository.delete(contact)
     }
+
     private fun validate(name: String, phone: String, removal: Boolean = false) {
 
-        if (removal){
-            if (name.isBlank() || phone.isBlank()){
-                throw Exception ("You must select a contact before removing.")
+        if (removal) {
+            if (name.isBlank() || phone.isBlank()) {
+                throw Exception("You must select a contact before removing.")
             }
         } else {
             if (name.isBlank()) {
