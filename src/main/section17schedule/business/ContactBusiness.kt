@@ -17,6 +17,10 @@ class ContactBusiness {
         ContactRepository.delete(contact)
     }
 
+    fun getList(): List<ContactModel> {
+        return ContactRepository.getList()
+    }
+
     private fun validate(name: String, phone: String, removal: Boolean = false) {
 
         if (removal) {
