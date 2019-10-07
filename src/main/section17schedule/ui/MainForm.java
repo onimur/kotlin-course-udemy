@@ -4,6 +4,8 @@ import section17schedule.business.ContactBusiness;
 import section17schedule.model.ContactModel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
@@ -17,6 +19,8 @@ public class MainForm extends JFrame {
     private JLabel labelContactCount;
 
     private ContactBusiness contactBusiness;
+    private String name = "";
+    private String phone = "";
 
     public MainForm() {
         //initializes the interface
@@ -63,7 +67,26 @@ public class MainForm extends JFrame {
             dispose();
         });
 
+        tableContacts.getSelectionModel().addListSelectionListener(e -> {
+            if (e.getValueIsAdjusting()) {
+                if (tableContacts.getSelectedRow() != -1) {
+                    name = tableContacts.getValueAt(tableContacts.getSelectedRow(), 0).toString();
+                    phone = tableContacts.getValueAt(tableContacts.getSelectedRow(), 1).toString();
+                }
+            }
+        });
+
         buttonRemove.addActionListener(e -> {
+            try {
+                contactBusiness.delete(name, phone);
+                loadContacts();
+
+                name = "";
+                phone = "";
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(new JFrame(), ex.getMessage());
+            }
+
 
         });
     }
