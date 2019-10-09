@@ -4,9 +4,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun log(str: String){
+fun log(str: String) {
     println(str)
 }
+
 fun top() {
     fun log(str: String) {
         val calendar = Calendar.getInstance()
@@ -18,7 +19,7 @@ fun top() {
     val interval = 1..1000000
     var sum = 0.0
     for (i in interval) {
-        sum += 1 * 2 *1
+        sum += 1 * 2 * 1
     }
 
     log("End")
@@ -27,7 +28,6 @@ fun top() {
 fun main() {
     top()
     log("t")
-
 
 
 }
