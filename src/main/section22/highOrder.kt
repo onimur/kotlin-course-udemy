@@ -1,12 +1,12 @@
 package section22
 
-fun operator(x: Int, y: Int, op: (Int, Int) -> Int): Int {
+private fun operator(x: Int, y: Int, op: (Int, Int) -> Int): Int {
     return op(x, y)
 }
 
-fun sum(x: Int, y: Int) = x + y
+private fun sum(x: Int, y: Int) = x + y
 
-fun multiply(x: Int, y: Int) = x * y
+private fun multiply(x: Int, y: Int) = x * y
 
 fun <T> Iterable<T>.customForEach(op: (T) -> Unit) {
     for (i in this) {
